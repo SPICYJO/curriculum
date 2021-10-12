@@ -8,7 +8,10 @@
  */
 
 const solution = (num1, num2, num3) => {
-  return 0
+  let max = num1
+  max = (num2 > max) ? num2 : max
+  max = (num3 > max) ? num3 : max
+  return max
 }
 
 module.exports = {
