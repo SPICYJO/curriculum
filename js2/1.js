@@ -10,7 +10,9 @@
  */
 
 const solution = (num) => {
-  return []
+	if (num == 0)
+		return []
+  return [...solution(num-1), num-1]
 }
 
 module.exports = {
