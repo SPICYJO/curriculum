@@ -11,7 +11,13 @@
  */
 
 const solution = (row, col) => {
-  return []
+  if (row == 0 && col == 0)
+		return []
+	if (row == 0)
+		return [0, ...solution(row, col-1)] // generate 1d array
+  if (row == 1)
+		return [solution(0, col)]
+	return [solution(0, col), ...solution(row-1, col)]
 }
 
 module.exports = {
