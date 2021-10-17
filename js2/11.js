@@ -6,6 +6,17 @@
 
 const solution = () => {
   Array.prototype.cFind = function (cb) {
+    let rec = (idx = 0) => {
+      if (idx >= this.length)
+        return undefined
+      
+      let testResult = cb(this[idx], idx, this)
+      if (testResult)
+        return this[idx]
+      else
+        return rec(idx+1)
+    }
+    return rec()
   }
 }
 
