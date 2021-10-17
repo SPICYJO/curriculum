@@ -7,6 +7,12 @@
  */
 
 const solution = (arr, time) => {
+  if (arr.length == 0)
+		return
+	setTimeout(() => {
+		arr[0]()
+		solution(arr.slice(1, arr.length), time)
+	}, time) 
 }
 
 module.exports = {
