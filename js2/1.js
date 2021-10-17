@@ -10,9 +10,11 @@
  */
 
 const solution = (num) => {
-	if (num == 0)
-		return []
-  return [...solution(num-1), num-1]
+  if (num == 0)
+    return []
+  let arr = solution(num-1)
+  arr.push(num-1)
+  return arr
 }
 
 module.exports = {
