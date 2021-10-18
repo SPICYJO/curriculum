@@ -5,18 +5,13 @@
  */
 
 const solution = () => {
-  Array.prototype.cFind = function (cb) {
-    let rec = (idx = 0) => {
-      if (idx >= this.length)
-        return undefined
-      
-      let testResult = cb(this[idx], idx, this)
-      if (testResult)
-        return this[idx]
-      else
-        return rec(idx+1)
-    }
-    return rec()
+  Array.prototype.cFind = function (cb, idx = 0) {
+    if (idx >= this.length)
+      return undefined
+    
+    if (cb(this[idx], idx, this))
+      return this[idx]
+    return this.cFind(cb, idx+1)
   }
 }
 
