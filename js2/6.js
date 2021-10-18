@@ -6,13 +6,13 @@
  * @param {number} time
  */
 
-const solution = (arr, time) => {
-  if (arr.length == 0)
-		return
-	setTimeout(() => {
-		arr[0]()
-		solution(arr.slice(1, arr.length), time)
-	}, time) 
+const solution = (arr, time, idx = 0) => {
+  if (idx >= arr.length)
+    return
+  setTimeout(() => {
+    arr[idx]()
+    solution(arr, time, idx+1)
+  }, time) 
 }
 
 module.exports = {
