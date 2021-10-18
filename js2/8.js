@@ -5,13 +5,13 @@
  */
 
 const solution = () => {
-  Array.prototype.cMap = function (cb) {
-    let rec = (idx = 0) => {
-      if (idx >= this.length)
-        return []
-      return [cb(this[idx], idx, this), ...rec(idx+1)]
-    }
-    return rec()
+  Array.prototype.cMap = function (cb, idx = 0) {
+    if (idx >= this.length)
+      return []
+    let ele = cb(this[idx], idx, this)
+    let arr = this.cMap(cb, idx+1)
+    arr.unshift(ele)
+    return arr
   }
 }
 
