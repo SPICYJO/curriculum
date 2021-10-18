@@ -5,18 +5,14 @@
  */
 
 const solution = () => {
-  Array.prototype.cFilter = function (cb) {
-    let rec = (idx = 0) => {
-      if (idx >= this.length)
-        return []
-      
-      let testResult = cb(this[idx], idx, this)
-      if (testResult)
-        return [this[idx], ...rec(idx+1)]
-      else
-        return [...rec(idx+1)]
+  Array.prototype.cFilter = function (cb, idx = 0) {
+    if (idx >= this.length)
+      return []
+    
+    if (cb(this[idx], idx, this)) {
+      return [this[idx]].concat(this.cFilter(cb, idx+1))
     }
-    return rec()
+    return this.cFilter(cb, idx+1)
   }
 }
 
