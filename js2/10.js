@@ -10,7 +10,9 @@ const solution = () => {
       return []
     
     if (cb(this[idx], idx, this)) {
-      return [this[idx]].concat(this.cFilter(cb, idx+1))
+      let arr = this.cFilter(cb, idx+1)
+      arr.unshift(this[idx])
+      return arr
     }
     return this.cFilter(cb, idx+1)
   }
