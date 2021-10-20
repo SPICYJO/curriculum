@@ -11,19 +11,20 @@
  */
 
 const solution = (row, col) => {
-  // generate 1d array when row == 0
-  if (row == 0 && col == 0)
-    return []
-  if (row == 0) { 
-    let arr = solution(row, col-1)
-	arr.unshift(0)
+  // helper function to generate 1d array
+  let generate1DArray = (size) => {
+    if (size == 0)
+      return []
+    let arr = generate1DArray(size-1)
+    arr.push(0)
     return arr
   }
-  // generate 2d array
-  if (row == 1)
-    return [solution(0, col)]
+  
+  if (row == 0) { 
+    return []
+  }
   let arr = solution(row-1, col)
-  arr.unshift(solution(0, col))
+  arr.push(generate1DArray(col))
   return arr
 }
 
