@@ -10,22 +10,20 @@
  * @returns {array}
  */
 
-const solution = (row, col) => {
+const solution = (row, col, result = []) => {
   // helper function to generate 1d array
-  let generate1DArray = (size) => {
-    if (size == 0)
-      return []
-    let arr = generate1DArray(size-1)
-    arr.push(0)
-    return arr
-  }
-  
   if (row == 0) { 
-    return []
+    return result
   }
-  let arr = solution(row-1, col)
-  arr.push(generate1DArray(col))
-  return arr
+  result.push(generate1DArray(col))
+  return solution(row-1, col, result)
+}
+
+let generate1DArray = (size, result = []) => {
+  if (size == 0)
+  	return result
+  result.push(0)
+  return generate1DArray(size-1, result)
 }
 
 module.exports = {
