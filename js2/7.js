@@ -5,8 +5,11 @@
  */
 
 const solution = () => {
-  Array.prototype.cForEach = function (cb) {
-    return 0
+  Array.prototype.cForEach = function (cb, idx = 0) {  
+    if(idx >= this.length)
+      return
+    cb(this[idx], idx, this)
+    this.cForEach(cb, idx+1)
   }
 }
 

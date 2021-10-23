@@ -5,8 +5,14 @@
  */
 
 const solution = () => {
-  Array.prototype.cReduce = function () {
-    return 0
+  Array.prototype.cReduce = function (cb, acc, idx = 0) {
+    if (acc === undefined)
+      return this.cReduce(cb, this[0], idx+1) 
+    
+    if (idx >= this.length)
+        return acc
+    let newAcc = cb(acc, this[idx], idx, this)
+    return this.cReduce(cb, newAcc, idx+1)
   }
 }
 
