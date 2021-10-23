@@ -21,7 +21,7 @@ const solution = (row, col, result = []) => {
 
 const generate1DArray = (size, result = []) => {
   if (size === 0)
-  	return result
+    return result
   result.push(0)
   return generate1DArray(size-1, result)
 }
