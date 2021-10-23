@@ -12,15 +12,15 @@
 
 const solution = (row, col, result = []) => {
   // helper function to generate 1d array
-  if (row == 0) { 
+  if (row === 0) { 
     return result
   }
   result.push(generate1DArray(col))
   return solution(row-1, col, result)
 }
 
-let generate1DArray = (size, result = []) => {
-  if (size == 0)
+const generate1DArray = (size, result = []) => {
+  if (size === 0)
   	return result
   result.push(0)
   return generate1DArray(size-1, result)
