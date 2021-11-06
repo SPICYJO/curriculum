@@ -5,13 +5,8 @@
  */
 
 const solution = (arr, obj, i=0) => {
-  if (i >= arr.length)
-    return []
-  
-  let s = solution(arr, obj, i+1)
-  if (obj.hasOwnProperty(arr[i]))
-    s.unshift(obj[arr[i]])
-  return s
+  return arr.filter(ele => obj.hasOwnProperty(ele))
+            .map(ele => obj[ele])
 }
 
 module.exports = {
