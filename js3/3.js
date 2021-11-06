@@ -5,7 +5,15 @@
  */
 
 const solution = (arr) => {
-  return (obj) => {
+  return (obj, i=0) => {
+    if (i >= arr.length)
+      return {}
+    
+    let s = solution(arr)(obj, i+1)
+    if (obj.hasOwnProperty(arr[i])) {
+      s[arr[i]] = obj[arr[i]]
+    }
+    return s
   }
 }
 
