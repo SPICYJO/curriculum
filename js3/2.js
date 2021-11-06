@@ -12,8 +12,20 @@
  * @return {array} arr
  */
 
-const solution = (num1, num2) => {
-  return []
+const makeRow = (y, num2, i=0) => {
+  if (i >= num2)
+    return []
+  let r = makeRow(y, num2, i+1)
+  r.unshift({x: i, y: y})
+  return r
+}
+
+const solution = (num1, num2, i=0) => {
+  if (i >= num1)
+    return []
+  let s = solution(num1, num2, i+1)
+  s.unshift(makeRow(i, num2))
+  return s
 }
 
 module.exports = {
