@@ -6,12 +6,11 @@
 
 const solution = (arr) => {
   return (obj) => {
-    let result = {}
-    arr.forEach(ele => {
+    return arr.reduce((acc, ele) => {
       if (obj.hasOwnProperty(ele))
-        result[ele] = obj[ele]
-    })
-    return result
+        acc[ele] = obj[ele]
+      return acc
+    }, {})
   }
 }
 
