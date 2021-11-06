@@ -4,9 +4,12 @@
  * @returns {array} arr
  */
 
-const solution = (arr, obj, i=0) => {
-  return arr.filter(ele => obj.hasOwnProperty(ele))
-            .map(ele => obj[ele])
+const solution = (arr, obj) => {
+  return arr.reduce((acc, ele) => {
+    if (obj.hasOwnProperty(ele))
+      acc.push(obj[ele])
+    return acc
+  }, [])
 }
 
 module.exports = {
