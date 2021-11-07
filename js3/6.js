@@ -5,7 +5,7 @@
 */
 
 const solution = (arr) => {
-  let counter = arr.reduce((acc, ele) => {
+  const counter = arr.reduce((acc, ele) => {
     acc[ele] = (acc[ele] === undefined) ? 1 : acc[ele]+1
     return acc
   }, Object.create(null))
