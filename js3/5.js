@@ -5,17 +5,13 @@
  * @return {object}
  **/
 
-const solution = (obj1, obj2, i=0) => {
-  let keys = Object.keys(obj1)
-  if (i >= keys.length) {
-    return {}
-  }
-
-  let s = solution(obj1, obj2, i+1)
-  s[keys[i]] = (obj2.hasOwnProperty(keys[i]))
-    ? obj2[[keys[i]]](keys[i])
-    : obj1[[keys[i]]]
-  return s
+const solution = (obj1, obj2) => {
+  return Object.keys(obj1).reduce((acc, ele) => {
+    acc[ele] = (obj2.hasOwnProperty(ele))
+      ? obj2[ele](ele)
+      : obj1[ele]
+    return acc
+  }, {})
 }
 
 module.exports = {
