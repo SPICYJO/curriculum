@@ -6,14 +6,14 @@
  * @returns {boolean}
  */
 
-const solution = (arr, num, i=0, memory={}) => {
-  if (i >= arr.length)
+const solution = (arr, num) => {
+  let seen = {}
+  return arr.some((ele) => {
+    if (seen[num - ele])
+      return true
+    seen[ele] = true
     return false
-  
-  if (memory.hasOwnProperty(num-arr[i]))
-    return true
-  memory[arr[i]] = true
-  return solution(arr, num, i+1, memory)
+  })
 }
 
 module.exports = {
