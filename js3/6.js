@@ -5,12 +5,15 @@
 */
 
 const solution = (arr) => {
-  const counter = arr.reduce((acc, ele) => {
-    acc[ele] = (acc[ele] === undefined) ? 1 : acc[ele]+1
+  let result = []
+  arr.reduce((acc, ele) => {
+    acc[ele] = (acc[ele] || 0) + 1
+    if (acc[ele] === 2)
+      result.push(ele)
     return acc
   }, Object.create(null))
 
-  return Object.keys(counter).filter(ele => counter[ele] > 1).map(Number)
+  return result
 }
 
 module.exports = {
