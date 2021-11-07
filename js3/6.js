@@ -4,17 +4,13 @@
  * @returns {array}
 */
 
-const solution = (arr, i=0, result=[], pushed={}, seen={}) => {
-  if (i >= arr.length) {
-    return result
-  }
-  
-  if (seen.hasOwnProperty(arr[i]) && !pushed.hasOwnProperty(arr[i])) {
-    result.push(arr[i])
-    pushed[arr[i]] = true
-  }
-  seen[arr[i]] = true
-  return solution(arr, i+1, result, pushed, seen)
+const solution = (arr) => {
+  let counter = arr.reduce((acc, ele) => {
+    acc[ele] = (acc[ele] === undefined) ? 1 : acc[ele]+1
+    return acc
+  }, Object.create(null))
+
+  return Object.keys(counter).filter(ele => counter[ele] > 1).map(Number)
 }
 
 module.exports = {
