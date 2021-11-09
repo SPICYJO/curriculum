@@ -6,8 +6,14 @@
  **/
 
 const solution = (obj1, obj2) => {
-  return {}
+  return Object.keys(obj1).reduce((acc, ele) => {
+    acc[ele] = (obj2.hasOwnProperty(ele))
+      ? obj2[ele](ele)
+      : obj1[ele]
+    return acc
+  }, {})
 }
+
 module.exports = {
   solution
 }

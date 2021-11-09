@@ -8,7 +8,17 @@
 */
 
 const solution = (obj, num) => {
+  const loopFun = (keys, i=0) => {
+    if (i >= keys.length)
+      return
+    
+    obj[keys[i]](keys[i])
+    setTimeout(() => {
+      loopFun(keys, i+1)
+    }, num)
+  }
 
+  loopFun(Object.keys(obj))
 }
 
 module.exports = {

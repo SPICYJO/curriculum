@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokemon Viewer</title>
+
+</head>
+<body>
+<div>
+  <button class="leftButton">Previous</button>
+  <button class="rightButton">Next</button>
+</div>
+<div class="mainDisplay">
+</div>
+
+<script>
+  let nextUrl, prevUrl;
+  update('https://pokeapi.co/api/v2/pokemon/')
+
+  document.getElementsByClassName('leftButton')[0].addEventListener('click', () => {
+    update(prevUrl)
+  })
+  document.getElementsByClassName('rightButton')[0].addEventListener('click', () => {
+    update(nextUrl)
+  })
+  
+  function update(url) {
+    if (!url)
+      return
+
+    fetch(url).then(res => {
+      return res.json()
+    }).then(data => {
+      nextUrl = data.next
+      prevUrl = data.previous
+      return Promise.all(data.results.map(result => {
+        return fetch(result.url).then(res => res.json())
+      }))
+    }).then(detailResults => {
+      return detailResults.map(result => {
+        let divElement = document.createElement('div')
+        let h1Element = document.createElement('h1')
+        let imgElement = document.createElement('img')
+        h1Element.innerText = result.name
+        imgElement.setAttribute('src', result.sprites.front_default)
+        divElement.append(h1Element, imgElement)
+        return divElement
+      })
+    }).then(divElements => {
+      document.getElementsByClassName("mainDisplay")[0].innerHTML = ''
+      document.getElementsByClassName("mainDisplay")[0].append(...divElements)
+    })
+  }
+</script>
+</body>
+</html>

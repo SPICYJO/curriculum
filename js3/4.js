@@ -7,7 +7,13 @@
  */
 
 const solution = (arr, num) => {
-  return true
+  let seen = {}
+  return arr.some((ele) => {
+    if (seen[num - ele])
+      return true
+    seen[ele] = true
+    return false
+  })
 }
 
 module.exports = {
